@@ -1,18 +1,29 @@
 <template>
     <v-toolbar class="cyan" dark>
         <v-toolbar-title class="mr-4">
-            <span
+            <router-link to="/items" custom v-slot="{ navigate }">
+            <span class="home" @click="navigate" @keypress.enter="navigate" role="link">GoGo Rental</span>
+                <!-- <span
                 class="home"
-                @click="navigateTo({name: 'root'})">
+                :to="{
+                    name: 'root'
+                }">
                 GoGo Rental
-            </span>
+                </span> -->
+            </router-link>
         </v-toolbar-title>
 
-        <!-- <v-toolbar-items>
-            <v-btn outlined dark class="cyan">
+        <v-toolbar-items>
+            <v-btn
+                outlined
+                dark
+                class="cyan"
+                :to="{
+                    name: 'items'
+                }">
                 Browse
             </v-btn>
-        </v-toolbar-items> -->
+        </v-toolbar-items>
 
         <v-spacer></v-spacer>
 
@@ -22,7 +33,9 @@
                 outlined
                 dark
                 class="cyan"
-                @click="navigateTo({name: 'login'})">
+                :to="{
+                    name: 'login'
+                }">
                 Login
             </v-btn>
 
@@ -31,8 +44,19 @@
                 outlined
                 dark
                 class="cyan"
-                @click="navigateTo({name: 'register'})">
+                :to="{
+                    name: 'register'
+                }">
                 Sign Up
+            </v-btn>
+
+            <v-btn
+                v-if="$store.state.isUserLoggedIn"
+                outlined
+                dark
+                class="cyan"
+                @click="logout">
+                Log Out
             </v-btn>
         </v-toolbar-items>
     </v-toolbar>
@@ -41,8 +65,12 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'root'
+      })
     }
   }
 }
