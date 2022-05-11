@@ -35,17 +35,82 @@
             Edit
           </v-btn>
 
+          <v-btn
+            v-if="isUserLoggedIn && !bookmark"
+            dark
+            class="cyan"
+            @click="setAsBookmark">
+            Set As Bookmark
+          </v-btn>
+
+          <v-btn
+            v-if="isUserLoggedIn && bookmark"
+            dark
+            class="cyan"
+            @click="unsetAsBookmark">
+            Unset As Bookmark
+          </v-btn>
           </v-flex>
         </v-layout>
     </v-layout>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
 
 export default {
   props: [
     'item'
-  ]
+  ],
+  data () {
+    return {
+      bookmark: null
+    }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user'
+    ])
+  },
+  watch: {
+    async item () {
+      if (!this.isUserLoggedIn) {
+        return
+      }
+
+      try {
+        const bookmarks = (await BookmarksService.index({
+          itemId: this.item.id
+        })).data
+        if (bookmarks.length) {
+          this.bookmark = bookmarks[0]
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  methods: {
+    async setAsBookmark () {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          itemId: this.item.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async unsetAsBookmark () {
+      try {
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
 }
 </script>
 

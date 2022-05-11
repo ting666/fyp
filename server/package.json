@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --watch src --exec npm run server",
     "server": "node src/app.js",
-    "lint": "eslint **/*.js"
+    "lint": "true || eslint **/*.js",
+    "seed": "node ./seed"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
     "sequelize": "^6.19.0",
     "sqlite3": "^5.0.4"
   }

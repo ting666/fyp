@@ -1,23 +1,41 @@
 <template>
     <v-app>
-        <v-layout column>
-            <v-flex xs6 class="pa-16">
-              <items-search-panel />
-              <items-panel class="mt-2" />
-            </v-flex>
-        </v-layout>
+      <v-layout>
+        <v-flex xs6 v-if="isUserLoggedIn">
+          <items-bookmarks />
+          <recently-viewed-items class="mt-2" />
+        </v-flex>
+
+        <v-flex :class="{
+          xs12: !isUserLoggedIn,
+          xs6: isUserLoggedIn
+        }" class="ml-2">
+          <items-search-panel />
+          <items-panel class="mt-2" />
+        </v-flex>
+      </v-layout>
     </v-app>
 </template>
 
 <script>
 import ItemsPanel from './ItemsPanel'
+import ItemsBookmarks from './ItemsBookmarks'
+import RecentlyViewedItems from './RecentlyViewedItems'
 import ItemsSearchPanel from './ItemsSearchPanel'
 import ItemsService from '@/services/ItemsService'
+import {mapState} from 'vuex'
 
 export default {
   components: {
     ItemsPanel,
-    ItemsSearchPanel
+    ItemsSearchPanel,
+    ItemsBookmarks,
+    RecentlyViewedItems
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
   },
   data () {
     return {

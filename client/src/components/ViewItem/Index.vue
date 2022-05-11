@@ -15,9 +15,11 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import ItemDetails from './ItemDetails'
 import FurtherDescription from './FurtherDescription'
 import ItemsService from '@/services/ItemsService'
+import ItemHistoryService from '@/services/ItemHistoryService'
 
 export default {
   data () {
@@ -25,9 +27,22 @@ export default {
       item: {}
     }
   },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user',
+      'route'
+    ])
+  },
   async mounted () {
-    const itemId = this.$store.state.route.params.itemId
+    const itemId = this.route.params.itemId
     this.item = (await ItemsService.show(itemId)).data
+
+    if (this.isUserLoggedIn) {
+      ItemHistoryService.post({
+        itemId: itemId
+      })
+    }
   },
   components: {
     ItemDetails,
