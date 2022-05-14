@@ -11,7 +11,7 @@
                     {{props.item.name}}
                 </td>
                 <td class="text-xs-right">
-                    {{props.item.status}}
+                    {{props.item.price}}
                 </td>
             </template>
         </v-data-table>
@@ -31,8 +31,8 @@ export default {
           value: 'name'
         },
         {
-          text: 'Status',
-          value: 'status'
+          text: 'Price',
+          value: 'price'
         }
       ],
       // options: {

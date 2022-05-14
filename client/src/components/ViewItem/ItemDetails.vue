@@ -14,8 +14,8 @@
           <div class="item-price">
             {{item.price}}
           </div>
-          <div class="item-status">
-            {{item.status}}
+          <div class="item-quantity">
+            {{item.quantity}}
           </div>
           <textarea
             readonly
@@ -133,9 +133,8 @@ export default {
   font-size: 18px;
 }
 
-.item-status {
+.item-quantity {
   font-size: 18px;
-  color: green;
 }
 
 .item-image {

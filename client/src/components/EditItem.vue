@@ -22,9 +22,9 @@
               ></v-text-field>
 
               <v-text-field
-                label="Status"
+                label="Quantity"
                 :rules="[required]"
-                v-model="item.status"
+                v-model="item.quantity"
               ></v-text-field>
 
               <v-text-field
@@ -65,7 +65,7 @@ export default {
         name: null,
         category: null,
         price: null,
-        status: null,
+        quantity: null,
         itemImageUrl: null,
         description: null
       },
