@@ -23,6 +23,17 @@
                 }">
                 Browse
             </v-btn>
+
+            <v-btn
+                v-if="$store.state.isUserLoggedIn"
+                outlined
+                dark
+                class="cyan"
+                :to="{
+                    name: 'listed-item'
+                }">
+                My Listed Item
+            </v-btn>
         </v-toolbar-items>
 
         <v-spacer></v-spacer>
@@ -55,6 +66,18 @@
                 outlined
                 dark
                 class="cyan"
+                :to="{
+                    name: 'item-cart'
+                }">
+                Cart
+                <span>({{cart.length}})</span>
+            </v-btn>
+
+            <v-btn
+                v-if="$store.state.isUserLoggedIn"
+                outlined
+                dark
+                class="cyan"
                 @click="logout">
                 Log Out
             </v-btn>
@@ -63,6 +86,8 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
   methods: {
     logout () {
@@ -72,6 +97,14 @@ export default {
         name: 'items'
       })
     }
+  },
+  computed: {
+    ...mapState([
+      'cart'
+    ])
+  },
+  mounted () {
+    this.$store.commit('getLocalStorage')
   }
 }
 </script>

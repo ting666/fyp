@@ -6,6 +6,8 @@ import Items from '@/components/Items/Index'
 import CreateItem from '@/components/CreateItem'
 import EditItem from '@/components/EditItem'
 import ViewItem from '@/components/ViewItem/Index'
+import Cart from '@/components/Cart'
+import ListedItem from '@/components/ListedItem'
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/items/:itemId/edit',
       name: 'item-edit',
       component: EditItem
+    },
+    {
+      path: '/items/cart',
+      name: 'item-cart',
+      component: Cart
+    },
+    {
+      path: '/items/listedItem',
+      name: 'listed-item',
+      component: ListedItem
     },
     {
       path: '*',

@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <panel title="Items">
+        <panel title="My Listed Item">
             <v-btn
                 slot="action"
                 :to="{
@@ -42,15 +42,6 @@
                       }
                     }">
                     View
-                    </v-btn>
-
-                    <v-btn
-                      v-if="$store.state.isUserLoggedIn"
-                      outlined
-                      dark
-                      class="cyan"
-                      @click="setup(item)">
-                      Add To Cart
                     </v-btn>
                 </v-flex>
 
