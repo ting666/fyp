@@ -1,41 +1,51 @@
 <template>
     <v-layout>
-        <v-flex xs6>
+        <v-flex xs6 class="mt-3">
           <img class="item-image" :src="item.itemImageUrl" />
         </v-flex>
+
         <v-layout>
-          <v-flex class="mt-6">
+          <v-flex class="mt-3">
           <div class="item-name">
             {{item.name}}
           </div>
-          <div class="item-category">
+          <!-- <div class="item-category">
             {{item.category}}
-          </div>
+          </div> -->
           <div class="item-price">
-            {{item.price}}
+            RM {{item.price}}
           </div>
-          <div class="item-quantity">
+
+          <v-layout>
+            <date-picker />
+            <v-flex xs6 class="mt-6">
+              <div class="box"></div>
+              <div> Quantity: 
+              <input
+                v-model="item.quantity" type="number" max="2" min="1"
+              >
+              </div>
+              <br>
+              <v-btn
+                v-if="$store.state.isUserLoggedIn"
+                outlined
+                dark
+                class="cyan"
+                @click="setup(item)">
+                Add To Cart
+              </v-btn>
+            </v-flex>
+          </v-layout>
+
+          <!-- <div class="item-quantity">
             {{item.quantity}}
-          </div>
-          <textarea
+          </div> -->
+          <!-- <textarea
             readonly
             v-model="item.description"
-          ></textarea>
-          <v-btn
-            dark
-            class="cyan"
-            :to="{
-              name: 'item-edit',
-              params () {
-                return {
-                  itemId: item.id
-                }
-              }
-            }">
-            Edit
-          </v-btn>
+          ></textarea> -->
 
-          <v-btn
+          <!-- <v-btn
             v-if="isUserLoggedIn && !bookmark"
             dark
             class="cyan"
@@ -49,7 +59,7 @@
             class="cyan"
             @click="unsetAsBookmark">
             Unset As Bookmark
-          </v-btn>
+          </v-btn> -->
           </v-flex>
         </v-layout>
     </v-layout>
@@ -58,6 +68,7 @@
 <script>
 import {mapState} from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
+import DatePicker from './DatePicker'
 
 export default {
   props: [
@@ -71,7 +82,8 @@ export default {
   computed: {
     ...mapState([
       'isUserLoggedIn',
-      'user'
+      'user',
+      'cart'
     ])
   },
   watch: {
@@ -109,7 +121,17 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    setup (item) {
+      this.$store.commit('addToCart', item)
+      this.$store.commit('storeItem')
+      this.$router.push({
+        name: 'item-cart'
+      })
     }
+  },
+  components: {
+    DatePicker
   }
 }
 </script>
@@ -130,7 +152,7 @@ export default {
 }
 
 .item-price {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .item-quantity {
@@ -152,5 +174,16 @@ textarea {
   overflow: auto;
   padding: 40px;
   text-align: justify;
+}
+
+input {
+  border: 2px solid #ddd;
+  width: 4rem;
+  text-align: center;
+  padding: 0 .5rem;
+}
+
+.box {
+  height: 300px;
 }
 </style>

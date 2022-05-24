@@ -7,6 +7,10 @@
               name="rental-form"
               autocomplete="off">
           <v-text-field
+              label="Username"
+              v-model="username"
+          ></v-text-field>
+          <v-text-field
               label="Email"
               v-model="email"
           ></v-text-field>
@@ -39,6 +43,7 @@ import AuthenticationService from '@/services/AuthenticationService'
 export default {
   data () {
     return {
+      username: '',
       email: '',
       password: '',
       error: null
@@ -48,6 +53,7 @@ export default {
     async register () {
       try {
         const response = await AuthenticationService.register({
+          username: this.username,
           email: this.email,
           password: this.password
         })

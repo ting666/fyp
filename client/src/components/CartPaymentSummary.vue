@@ -14,7 +14,6 @@
                     Deposit
                     </td>
                     <td>RM {{Deposit}}</td>
-                    
                 </tr>
                 <tr class="text-left">
                     <td>

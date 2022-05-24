@@ -36,12 +36,19 @@
                     dark
                     class="cyan"
                     :to="{
-                      name: 'item',
+                      name: 'listed-item',
                       params: {
                         itemId: item.id
                       }
                     }">
                     View
+                    </v-btn>
+
+                    <v-btn
+                    dark
+                    class="cyan"
+                    @click="del(item.id)">
+                    Delete
                     </v-btn>
                 </v-flex>
 
@@ -56,8 +63,6 @@
 
 <script>
 import ItemsService from '@/services/ItemsService'
-// import CartService from '@/services/CartService'
-import {mapState} from 'vuex'
 
 export default {
   data () {
@@ -73,18 +78,50 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapState([
-      'cart'
-    ])
-  },
   methods: {
-    setup (item) {
-      this.$store.commit('addToCart', item)
-      this.$store.commit('storeItem')
-      this.$router.push({
-        name: 'item-cart'
-      })
+    //   async del () {
+    //   try {
+    //     // await ItemsService.delete(itemId)
+    //     // this.$router.push({
+    //     //   name: 'listed-item'
+    //     // })
+    //     const itemId = this.$store.state.route.params.itemId
+
+    //     await ItemsService.delete(this.item)
+    //     this.$router.push({
+    //       name: 'listed-items',
+    //       params: {
+    //         itemId: itemId
+    //       }
+    //     })
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
+
+    refreshList () {
+      this.handler()
+    },
+    // del (id) {
+    //   // this.items.splice(item.id, 1)
+    //   ItemsService.delete(id)
+    //     .then(() => {
+    //       this.refreshList()
+    //     })
+    //     .catch((e) => {
+    //       console.log(e)
+    //     })
+    // }
+
+    async del(id) {
+      try {
+        await ItemsService.delete(id)
+        this.refreshList()
+      }
+
+      catch (err) {
+        console.log(err)
+      }
     }
   }
 }

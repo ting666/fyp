@@ -16,5 +16,8 @@ export default {
   },
   put (item) {
     return Api().put(`items/${item.id}`, item)
+  },
+  delete (itemId) {
+    return Api().delete(`items/${itemId}`)
   }
 }

@@ -30,7 +30,7 @@
                 dark
                 class="cyan"
                 :to="{
-                    name: 'listed-item'
+                    name: 'listed-items'
                 }">
                 My Listed Item
             </v-btn>

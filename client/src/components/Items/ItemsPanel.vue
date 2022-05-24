@@ -65,7 +65,6 @@
 
 <script>
 import ItemsService from '@/services/ItemsService'
-// import CartService from '@/services/CartService'
 import {mapState} from 'vuex'
 
 export default {
