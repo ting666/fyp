@@ -5,7 +5,7 @@
                 <template v-slot:default>
                 <tr class="text-left">
                     <td>
-                    Subtotal
+                      Subtotal
                     </td>
                     <td>RM {{subTotal}}</td>
                 </tr>
@@ -23,7 +23,7 @@
                     </td>
                     <td>
                     <strong>
-                        {{grandTotal.toFixed(2)}}
+                        RM {{grandTotal.toFixed(2)}}
                     </strong>
                     </td>
                 </tr>
@@ -32,7 +32,10 @@
             <br>
                 <v-btn
                 dark
-                class="cyan">
+                class="cyan"
+                :to="{
+                  name: 'checkout'
+                }">
                 Proceed to checkout
                 </v-btn>
         </panel>
@@ -40,10 +43,10 @@
 </template>
 
 <script>
+
 export default {
   computed: {
     subTotal () {
-      // return this.$store.commit('calcSubTotal')
       return this.$store.state.subTotal
     },
     Deposit () {

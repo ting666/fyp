@@ -9,6 +9,7 @@ import ViewItem from '@/components/ViewItem/Index'
 import Cart from '@/components/Cart'
 import ListedItem from '@/components/ViewListedItem/ListedItem'
 import ViewListedItem from '@/components/ViewListedItem/Index'
+import Checkout from '@/components/Checkout'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/listedItems/:itemId',
       name: 'listed-item',
       component: ViewListedItem
+    },
+    {
+      path: '/items/cart/checkout',
+      name: 'checkout',
+      component: Checkout
     },
     {
       path: '*',

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-layout v-if="cart.length >= 1">
+    <v-layout v-if="cart.length == 1">
           <!-- <v-data-table
               :headers="headers"
               :items="cartItems">
@@ -69,8 +69,6 @@ export default {
   },
   methods: {
     mounted () {
-      // this.$store.commit('calcSubTotal')
-      // this.$store.commit('calcGrandTotal')
     }
   },
   components: {

@@ -52,6 +52,8 @@ export default {
       this.$store.commit('calcSubTotal')
       this.$store.commit('calcGrandTotal')
       this.$store.commit('storeItem')
+      console.log(this.subTotal)
+
     }
   }
 

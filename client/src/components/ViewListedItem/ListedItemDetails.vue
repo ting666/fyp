@@ -3,24 +3,27 @@
         <v-flex xs6>
           <img class="item-image" :src="item.itemImageUrl" />
         </v-flex>
+
         <v-layout>
-          <v-flex class="mt-6">
+          <v-flex class="mt-6 itemBox">
           <div class="item-name">
-            {{item.name}}
+            Name: {{item.name}}
           </div>
           <div class="item-category">
-            {{item.category}}
+            Category: {{item.category}}
           </div>
           <div class="item-price">
-            {{item.price}}
+            Price: RM {{item.price}}
           </div>
           <div class="item-quantity">
-            {{item.quantity}}
+            Quantity: {{item.quantity}}
           </div>
-          <textarea
-            readonly
-            v-model="item.description"
-          ></textarea>
+          <div class="item-owner">
+            Owner: {{item.owner}}
+          </div>
+          <div class="item-description">
+            Description: {{item.description}}
+          </div>
           <v-btn
             dark
             class="cyan"
@@ -114,19 +117,34 @@ export default {
 }
 
 .item-name {
-  font-size: 30px;
+  text-align: left;
+  font-size: 18px;
 }
 
 .item-category {
+  text-align: left;
   font-size: 18px;
 }
 
 .item-price {
+  text-align: left;
   font-size: 18px;
 }
 
 .item-quantity {
+  text-align: left;
   font-size: 18px;
+}
+
+.item-owner {
+  text-align: left;
+  font-size: 18px;
+}
+
+.item-description {
+  text-align: left;
+  font-size: 18px;
+  margin-bottom: 50px;
 }
 
 .item-image {
@@ -144,5 +162,11 @@ textarea {
   overflow: auto;
   padding: 40px;
   text-align: justify;
+}
+
+.itemBox {
+  border: lightgray solid;
+  border-radius: 25px;
+  padding: 15px;
 }
 </style>

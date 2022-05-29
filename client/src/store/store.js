@@ -51,7 +51,7 @@ export default new Vuex.Store({
       }
     },
     calcSubTotal (state) {
-      if (state.cart.length == 1) {
+      if (state.cart.length === 1) {
         state.cart.forEach((item) => {
           state.subTotal = item.price * item.quantity
           console.log('able to calculate sub total')

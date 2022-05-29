@@ -17,8 +17,9 @@
             </v-btn>
 
             <div v-for="item in items"
-                class="item"
                 :key="item.id">
+
+              <div class="item" v-if="item.owner == $store.state.user.username">
 
                 <v-layout>
                 <v-flex xs6>
@@ -29,7 +30,7 @@
                     {{item.category}}
                     </div>
                     <div class="item-price">
-                    {{item.price}}
+                    RM {{item.price}}
                     </div>
 
                     <v-btn
@@ -56,6 +57,7 @@
                     <img class="item-image" :src="item.itemImageUrl" />
                 </v-flex>
                 </v-layout>
+              </div>
             </div>
         </panel>
     </v-app>
@@ -67,7 +69,8 @@ import ItemsService from '@/services/ItemsService'
 export default {
   data () {
     return {
-      items: null
+      items: null,
+      item: {}
     }
   },
   watch: {
@@ -113,13 +116,11 @@ export default {
     //     })
     // }
 
-    async del(id) {
+    async del (id) {
       try {
         await ItemsService.delete(id)
         this.refreshList()
-      }
-
-      catch (err) {
+      } catch (err) {
         console.log(err)
       }
     }

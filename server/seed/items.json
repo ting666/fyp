@@ -1,5 +1,6 @@
 [
     {
+        "owner": "testing",
         "name": "Chair",
         "category": "Furniture",
         "price": 5.12,
@@ -8,6 +9,7 @@
         "description": "bla bla bla"
     },
     {
+        "owner": "testing",
         "name": "cxzc",
         "category": "cxzc",
         "price": 12,
@@ -16,6 +18,7 @@
         "description": "zxc"
     },
     {
+        "owner": "testing",
         "name": "Mid Century Modern Chair with Wood Legs",
         "category": "Furniture",
         "price": 82.17,
@@ -24,6 +27,7 @@
         "description": "The Mid Century Modern Molded Arm Chair with Wood Leg is stylish, comfortable and lightweight. Its minimalist design is the perfect accent chair for all types of home decor making it a must have piece! Available in black, white, red and blue, this chair offers many practical features that enhance comfort and durability."
     },
     {
+        "owner": "testing",
         "name": "test",
         "category": "test",
         "price": 11.22,
@@ -32,6 +36,7 @@
         "description": "test"
     },
     {
+        "owner": "meow",
         "name": "test",
         "category": "test",
         "price": 11.12,
@@ -40,6 +45,7 @@
         "description": "test"
     },
     {
+        "owner": "meow",
         "name": "test",
         "category": "test",
         "price": 11.12,
@@ -48,6 +54,7 @@
         "description": "test"
     },
     {
+        "owner": "meow",
         "name": "Mid Century Modern Chair with Wood Legs",
         "category": "Furniture",
         "price": 82.17,

@@ -1,11 +1,15 @@
 <template>
     <v-layout>
-        <v-flex xs6 class="mt-3">
+        <v-flex xs6 class="mt-3 imageBox">
           <img class="item-image" :src="item.itemImageUrl" />
+          <div class="item-owner">
+            Owner: {{item.owner}}
+          </div>
         </v-flex>
+        
 
         <v-layout>
-          <v-flex class="mt-3">
+          <v-flex class="mt-3 itemBox">
           <div class="item-name">
             {{item.name}}
           </div>
@@ -15,6 +19,7 @@
           <div class="item-price">
             RM {{item.price}}
           </div>
+          
 
           <v-layout>
             <date-picker />
@@ -32,6 +37,16 @@
                 dark
                 class="cyan"
                 @click="setup(item)">
+                Add To Cart
+              </v-btn>
+              <v-btn
+                v-if="!$store.state.isUserLoggedIn"
+                outlined
+                dark
+                class="cyan"
+                :to="{
+                    name: 'login'
+                }">
                 Add To Cart
               </v-btn>
             </v-flex>
@@ -62,6 +77,11 @@
           </v-btn> -->
           </v-flex>
         </v-layout>
+        <!-- <v-layout>
+      <div class="item-owner">
+            Owner: {{item.owner}}
+          </div>
+    </v-layout> -->
     </v-layout>
 </template>
 
@@ -123,11 +143,15 @@ export default {
       }
     },
     setup (item) {
-      this.$store.commit('addToCart', item)
-      this.$store.commit('storeItem')
-      this.$router.push({
-        name: 'item-cart'
-      })
+      if (this.$store.state.cart.length === 0) {
+        this.$store.commit('addToCart', item)
+        this.$store.commit('storeItem')
+        this.$router.push({
+          name: 'item-cart'
+        })
+      } else {
+        alert('You can only checkout one item per order. Please add this item to your WishList to order again later, or remove the current item in your cart.')
+      }
     }
   },
   components: {
@@ -144,7 +168,11 @@ export default {
 }
 
 .item-name {
+  text-align: left;
   font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .item-category {
@@ -152,7 +180,19 @@ export default {
 }
 
 .item-price {
+  font-size: 25px;
+  color: #00BCD4;
+  background-color: #FAFAFA;
+  margin-bottom: 60px;
+  margin-top: 30px;
+}
+
+.item-owner {
   font-size: 20px;
+  text-align: center;
+  margin: 20px;
+  color: gray;
+  font-style: oblique;
 }
 
 .item-quantity {
@@ -162,6 +202,13 @@ export default {
 .item-image {
   width: 50%;
   margin: 0 auto;
+}
+
+.imageBox {
+  border: lightgray solid;
+  border-radius: 25px;
+  padding: 15px;
+  margin-right: 5px;
 }
 
 textarea {
@@ -185,5 +232,11 @@ input {
 
 .box {
   height: 300px;
+}
+
+.itemBox {
+  border: lightgray solid;
+  border-radius: 25px;
+  padding: 15px;
 }
 </style>

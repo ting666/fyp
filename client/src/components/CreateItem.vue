@@ -4,6 +4,12 @@
           <v-flex>
             <panel title="List Item">
               <v-text-field
+                label="Owner"
+                v-model="this.$store.state.user.username"
+                disabled
+              ></v-text-field>
+
+              <v-text-field
                 label="Name"
                 :rules="[required]"
                 v-model="item.name"
@@ -62,6 +68,7 @@ export default {
   data () {
     return {
       item: {
+        owner: this.$store.state.user.username,
         name: null,
         category: null,
         price: null,

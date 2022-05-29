@@ -3,8 +3,6 @@
     <v-layout>
       <v-flex class="mt-2">
         <item-details :item="item" />
-        <!-- <date-picker /> -->
-
       </v-flex>
     </v-layout>
 
@@ -21,7 +19,6 @@
 import {mapState} from 'vuex'
 import ItemDetails from './ItemDetails'
 import FurtherDescription from './FurtherDescription'
-// import DatePicker from './DatePicker'
 import ItemsService from '@/services/ItemsService'
 import ItemHistoryService from '@/services/ItemHistoryService'
 
@@ -51,7 +48,6 @@ export default {
   components: {
     ItemDetails,
     FurtherDescription
-    // DatePicker
   }
 }
 </script>

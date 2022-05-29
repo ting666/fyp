@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Item = sequelize.define('Item', {
+        owner: DataTypes.STRING,
         name: DataTypes.STRING,
         category: DataTypes.STRING,
         price: DataTypes.DECIMAL,

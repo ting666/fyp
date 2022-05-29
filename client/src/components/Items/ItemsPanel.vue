@@ -1,21 +1,6 @@
 <template>
     <v-app>
         <panel title="Items">
-            <v-btn
-                slot="action"
-                :to="{
-                    name: 'items-create'
-                }"
-                class="cyan accent-2"
-                light
-                medium
-                absolute
-                right
-                middle
-                fab>
-                <v-icon>add</v-icon>
-            </v-btn>
-
             <div v-for="item in items"
                 class="item"
                 :key="item.id">
@@ -29,7 +14,7 @@
                     {{item.category}}
                     </div>
                     <div class="item-price">
-                    {{item.price}}
+                    RM {{item.price}}
                     </div>
 
                     <v-btn
@@ -51,7 +36,7 @@
                       class="cyan"
                       @click="setup(item)">
                       Add To Cart
-                    </v-btn>
+                    </v-btn>     
                 </v-flex>
 
                 <v-flex xs6>
@@ -88,11 +73,15 @@ export default {
   },
   methods: {
     setup (item) {
-      this.$store.commit('addToCart', item)
-      this.$store.commit('storeItem')
-      this.$router.push({
-        name: 'item-cart'
-      })
+      if (this.$store.state.cart.length === 0) {
+        this.$store.commit('addToCart', item)
+        this.$store.commit('storeItem')
+        this.$router.push({
+          name: 'item-cart'
+        })
+      } else {
+        alert('You can only checkout one item per order. Please add this item to your WishList to order again later, or remove the current item in your cart.')
+      }
     }
   }
 }
@@ -121,4 +110,5 @@ export default {
   width: 40%;
   margin: 0 auto;
 }
+
 </style>
