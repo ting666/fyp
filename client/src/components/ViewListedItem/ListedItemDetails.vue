@@ -38,13 +38,6 @@
             Edit
           </v-btn>
 
-          <!-- <v-btn
-          dark
-          class="cyan"
-          @click="del">
-          Delete
-          </v-btn> -->
-
           <v-btn
             dark
             class="cyan"
@@ -67,11 +60,6 @@ export default {
   props: [
     'item'
   ],
-  // data () {
-  //   return {
-  //     item: {}
-  //   }
-  // },
   computed: {
     ...mapState([
       'isUserLoggedIn',
@@ -82,27 +70,6 @@ export default {
     async item () {
       if (!this.isUserLoggedIn) {
         return
-      }
-    }
-  },
-  methods: {
-    async del () {
-      try {
-        // await ItemsService.delete(itemId)
-        // this.$router.push({
-        //   name: 'listed-item'
-        // })
-        // const itemId = this.$store.state.route.params.itemId
-
-        // await ItemsService.delete(this.item)
-        // this.$router.push({
-        //   name: 'listed-items',
-        //   params: {
-        //     itemId: item.id
-        //   }
-        // })
-      } catch (err) {
-        console.log(err)
       }
     }
   }

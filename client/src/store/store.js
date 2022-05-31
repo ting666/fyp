@@ -58,8 +58,6 @@ export default new Vuex.Store({
           console.log(state.subTotal)
         })
       }
-      // } else if (state.cart.length > 1) {
-      // }
     },
     calcGrandTotal (state) {
       var deposit = 200

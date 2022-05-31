@@ -82,44 +82,12 @@ export default {
     }
   },
   methods: {
-    //   async del () {
-    //   try {
-    //     // await ItemsService.delete(itemId)
-    //     // this.$router.push({
-    //     //   name: 'listed-item'
-    //     // })
-    //     const itemId = this.$store.state.route.params.itemId
-
-    //     await ItemsService.delete(this.item)
-    //     this.$router.push({
-    //       name: 'listed-items',
-    //       params: {
-    //         itemId: itemId
-    //       }
-    //     })
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-
-    refreshList () {
-      this.handler()
-    },
-    // del (id) {
-    //   // this.items.splice(item.id, 1)
-    //   ItemsService.delete(id)
-    //     .then(() => {
-    //       this.refreshList()
-    //     })
-    //     .catch((e) => {
-    //       console.log(e)
-    //     })
-    // }
-
     async del (id) {
       try {
         await ItemsService.delete(id)
-        this.refreshList()
+        this.$router.push({
+          name: 'items'
+        })
       } catch (err) {
         console.log(err)
       }

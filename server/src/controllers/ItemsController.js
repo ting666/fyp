@@ -63,5 +63,19 @@ module.exports = {
                 error: 'an error has occured trying to update the items'
             })
         }
+    },
+    async delete (req, res) {
+        try{
+            const id = req.params.itemId;
+            await Item.destroy({
+                where: {id: id}
+            })
+            res.send(id)
+        } catch (err) {
+            res.status(500).send({
+                error: 'an error has occured trying to delete the items'
+            })
+        }
+        
     }
 }

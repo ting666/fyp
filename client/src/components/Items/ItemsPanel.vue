@@ -27,16 +27,7 @@
                       }
                     }">
                     View
-                    </v-btn>
-
-                    <v-btn
-                      v-if="$store.state.isUserLoggedIn"
-                      outlined
-                      dark
-                      class="cyan"
-                      @click="setup(item)">
-                      Add To Cart
-                    </v-btn>     
+                    </v-btn> 
                 </v-flex>
 
                 <v-flex xs6>
@@ -50,7 +41,6 @@
 
 <script>
 import ItemsService from '@/services/ItemsService'
-import {mapState} from 'vuex'
 
 export default {
   data () {
@@ -63,24 +53,6 @@ export default {
       immediate: true,
       async handler (value) {
         this.items = (await ItemsService.index(value)).data
-      }
-    }
-  },
-  computed: {
-    ...mapState([
-      'cart'
-    ])
-  },
-  methods: {
-    setup (item) {
-      if (this.$store.state.cart.length === 0) {
-        this.$store.commit('addToCart', item)
-        this.$store.commit('storeItem')
-        this.$router.push({
-          name: 'item-cart'
-        })
-      } else {
-        alert('You can only checkout one item per order. Please add this item to your WishList to order again later, or remove the current item in your cart.')
       }
     }
   }

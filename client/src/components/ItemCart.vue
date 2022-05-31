@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+// import CartsService from '@/services/CartsService'
 
 export default {
   props: {
@@ -41,7 +43,11 @@ export default {
   computed: {
     subTotal () {
       return this.item.price * this.item.quantity
-    }
+    },
+    ...mapState([
+      'isUserLoggedIn',
+      'user'
+    ])
   },
   methods: {
     removeItem (item) {
@@ -53,9 +59,13 @@ export default {
       this.$store.commit('calcGrandTotal')
       this.$store.commit('storeItem')
       console.log(this.subTotal)
-
     }
   }
+  // async mounted () {
+  //   if (this.isUserLoggedIn) {
+  //     this.item = (await CartsService.index()).data
+  //   }
+  // }
 
 }
 </script>

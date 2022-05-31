@@ -3,7 +3,8 @@ const {
     Item,
     User,
     Bookmark,
-    History
+    History,
+    Cart
 } = require('../src/models')
 
 const Promise = require('bluebird')
@@ -11,6 +12,7 @@ const items = require('./items.json')
 const users = require('./users.json')
 const bookmarks = require('./bookmarks.json')
 const histories = require('./histories.json')
+const carts = require('./carts.json')
 
 sequelize.sync({force: true})
  .then(async function () {
@@ -35,6 +37,12 @@ sequelize.sync({force: true})
     await Promise.all(
         histories.map(history => {
             History.create(history)
+        })
+    )
+
+    await Promise.all(
+        carts.map(cart => {
+            Cart.create(cart)
         })
     )
 })

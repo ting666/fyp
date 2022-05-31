@@ -20,7 +20,9 @@ module.exports = (app) => {
     app.put('/items/:itemId', 
         ItemsController.put)
     app.post('/items', 
-        ItemsController.post)
+        ItemsController.post),
+    app.delete('/items/:itemId',
+        ItemsController.delete)
 
     app.get('/bookmarks',
         isAuthenticated,

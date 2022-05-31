@@ -60,7 +60,7 @@
             v-model="item.description"
           ></textarea> -->
 
-          <!-- <v-btn
+          <v-btn
             v-if="isUserLoggedIn && !bookmark"
             dark
             class="cyan"
@@ -74,7 +74,7 @@
             class="cyan"
             @click="unsetAsBookmark">
             Unset As Bookmark
-          </v-btn> -->
+          </v-btn>
           </v-flex>
         </v-layout>
         <!-- <v-layout>
@@ -88,6 +88,7 @@
 <script>
 import {mapState} from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
+// import CartsService from '@/services/CartsService'
 import DatePicker from './DatePicker'
 
 export default {
@@ -142,13 +143,24 @@ export default {
         console.log(err)
       }
     },
-    setup (item) {
+    async setup (item) {
       if (this.$store.state.cart.length === 0) {
         this.$store.commit('addToCart', item)
         this.$store.commit('storeItem')
         this.$router.push({
           name: 'item-cart'
         })
+        // try {
+        //   // this.cart = (await CartsService.post({
+        //   //   itemId: this.item.id
+        //   // })).data
+        //   await CartsService.post(this.item.id)
+        //   this.$router.push({
+        //     name: 'item-cart'
+        //   })
+        // } catch (err) {
+        //   console.log(err)
+        // }
       } else {
         alert('You can only checkout one item per order. Please add this item to your WishList to order again later, or remove the current item in your cart.')
       }

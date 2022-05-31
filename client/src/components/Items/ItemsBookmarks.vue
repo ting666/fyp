@@ -55,6 +55,7 @@ export default {
     if (this.isUserLoggedIn) {
       this.bookmarks = (await BookmarksService.index()).data
     }
+    // this.bookmarks = (await BookmarksService.index()).data
   }
 }
 </script>
