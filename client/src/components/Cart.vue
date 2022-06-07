@@ -1,16 +1,6 @@
 <template>
   <v-app>
     <v-layout v-if="cart.length == 1">
-          <!-- <v-data-table
-              :headers="headers"
-              :items="cartItems">
-
-              <template>
-                  <td class="text-xs-right">
-                      <item-cart />
-                  </td>
-              </template>
-          </v-data-table> -->
       <v-flex xs9>
         <panel title="Cart">
           <v-simple-table>
@@ -35,8 +25,9 @@
                 </tr>
               </thead>
               <tbody>
-                <item-cart :item="item" v-for="(item, index) in cart"
-                :key="index"/>
+                <!-- <item-cart :item="item" v-for="(item, index) in cart"
+                :key="index"/> -->
+                <item-cart :item="item" />
               </tbody>
             </template>
           </v-simple-table>
@@ -59,17 +50,30 @@
 <script>
 import ItemCart from '@/components/ItemCart'
 import CartPaymentSummary from '@/components/CartPaymentSummary'
+import CartsService from '@/services/CartsService'
 import {mapState} from 'vuex'
 
 export default {
+  data () {
+    return {
+      item: {}
+    }
+  },
   computed: {
     ...mapState([
-      'cart'
+      'cart',
+      'isUserLoggedIn',
+      'user',
+      'route'
     ])
   },
   methods: {
-    mounted () {
-    }
+    // mounted () {
+    // }
+  },
+  async mounted () {
+    const cartId = this.$store.state.route.params.cartId
+    this.item = (await CartsService.show(cartId)).data
   },
   components: {
     ItemCart,

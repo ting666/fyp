@@ -85,5 +85,24 @@ module.exports = {
                 error: 'an error has occured trying to delete the cart'
             })
         }
+    },
+    async show (req, res) {
+        try{
+            const userId = req.user.id
+            const {cartId} = req.params
+            console.log(cartId)
+            const cart = await Cart.findByPk({
+            // await Cart.findByPk({
+                where: {
+                    CartId: cartId,
+                    UserId: userId
+                }
+            })
+            res.send(cart)
+        } catch (err) {
+            res.status(500).send({
+                error: 'an error has occured trying to show the cart item'
+            })
+        }
     }
 }

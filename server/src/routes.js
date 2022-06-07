@@ -3,6 +3,7 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 const ItemsController = require('./controllers/ItemsController')
 const BookmarksController = require('./controllers/BookmarksController')
 const HistoriesController = require('./controllers/HistoriesController')
+const CartController = require('./controllers/CartController')
 
 const isAuthenticated = require('./policies/isAuthenticated')
 
@@ -23,6 +24,19 @@ module.exports = (app) => {
         ItemsController.post),
     app.delete('/items/:itemId',
         ItemsController.delete)
+
+    app.get('/carts',
+        isAuthenticated,
+        CartController.index)
+    app.post('/carts',
+        isAuthenticated,
+        CartController.post)
+    app.get('/carts/:cartId',
+        isAuthenticated,
+        CartController.show)
+    app.delete('/carts/:cartId',
+        isAuthenticated,
+        CartController.remove)
 
     app.get('/bookmarks',
         isAuthenticated,

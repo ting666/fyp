@@ -7,7 +7,7 @@
                     <td>
                     Item Name:
                     </td>
-                    <td>Item</td>
+                    <td>{{item.name}}</td>
                 </tr>
                 <tr class="text-left">
                     <td>
@@ -85,13 +85,13 @@
                     <td>
                     Connected Rental Wallet Address:
                     </td>
-                    <td>Item</td>
+                    <td>{{walletAddress}}</td>
                 </tr>
                 <tr class="text-left">
                     <td>
                     Contract Status:
                     </td>
-                    <td>1</td>
+                    <td></td>
                 </tr>
                 </template>
             </v-simple-table>
@@ -102,25 +102,46 @@
 </template>
 
 <script>
-import Web3 from 'web3'
+import PaymentService from '../services/PaymentService'
 
 export default {
-methods:{
-    async connectWallet () {
-        if (typeof window !== "undefined" && typeof window.ethereum !== "undefined"){
+    props: {
+        item: {
+            type: Object,
+            required: true
+        }
+    },
+    computed: {
+        walletAddress(){
+            const paymentService = new PaymentService()
             try {
-                await window.ethereum.request({method: "eth_requestAccounts"})
-                const web3 = new Web3(window.ethereum)
+                const address = paymentService.getWalletAddress()
+                return address
             } catch (err) {
-                console.log(err.message)
+                console.log(err)
             }
         }
-        else {
-            console.log("Plase install MetaMask")
+    },
+    methods:{
+        async connectWallet() {
+            const paymentService = new PaymentService()
+            try {
+                const contract = await paymentService.connectWallet()
+            } catch (err) {
+                console.log(err)
+            }        
+        },
+        async itemReturned () {
+        try {
+            console.log(item.name)
+            this.$router.push({
+            name: 'create-review'
+            })
+        } catch (err) {
+            console.log(err)
+        }
         }
     }
-}
-   
 }
 </script>
 

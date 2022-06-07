@@ -9,6 +9,9 @@ export default {
   post (cart) {
     return Api().post('carts', cart)
   },
+  show (cartId) {
+    return Api().get(`carts/${cartId}`)
+  },
   delete (cartId) {
     return Api().delete(`carts/${cartId}`)
   }

@@ -16,7 +16,8 @@ export default new Vuex.Store({
     cart: [],
     subTotal: null,
     deposit: null,
-    grandTotal: null
+    grandTotal: null,
+    contract:''
   },
   mutations: {
     setToken (state, token) {
@@ -63,6 +64,9 @@ export default new Vuex.Store({
       var deposit = 200
       state.grandTotal = state.subTotal + deposit
       state.deposit = deposit
+    },
+    setContract (state, address) {
+      state.contract = address
     }
   },
   actions: {

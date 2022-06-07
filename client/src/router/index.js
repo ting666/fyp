@@ -10,6 +10,7 @@ import Cart from '@/components/Cart'
 import ListedItem from '@/components/ViewListedItem/ListedItem'
 import ViewListedItem from '@/components/ViewListedItem/Index'
 import Checkout from '@/components/Checkout'
+import CreateReview from '@/components/CreateReview'
 
 Vue.use(Router)
 
@@ -64,6 +65,11 @@ export default new Router({
       path: '/items/cart/checkout',
       name: 'checkout',
       component: Checkout
+    },
+    {
+      path: '/reviews/create',
+      name: 'create-review',
+      component: CreateReview
     },
     {
       path: '*',

@@ -88,7 +88,7 @@
 <script>
 import {mapState} from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
-// import CartsService from '@/services/CartsService'
+import CartsService from '@/services/CartsService'
 import DatePicker from './DatePicker'
 
 export default {
@@ -145,11 +145,12 @@ export default {
     },
     async setup (item) {
       if (this.$store.state.cart.length === 0) {
-        this.$store.commit('addToCart', item)
-        this.$store.commit('storeItem')
-        this.$router.push({
-          name: 'item-cart'
-        })
+        // this.$store.commit('addToCart', item)
+        // this.$store.commit('storeItem')
+        // this.$router.push({
+        //   name: 'item-cart'
+        // })
+
         // try {
         //   // this.cart = (await CartsService.post({
         //   //   itemId: this.item.id
@@ -161,6 +162,19 @@ export default {
         // } catch (err) {
         //   console.log(err)
         // }
+
+        const itemId = this.$store.state.route.params.itemId
+        try {
+          // const itemId = this.route.params.itemId
+          await CartsService.post({
+            itemId: itemId
+          })
+          this.$router.push({
+            name: 'item-cart'
+          })
+        } catch (err) {
+          console.log(err)
+        }
       } else {
         alert('You can only checkout one item per order. Please add this item to your WishList to order again later, or remove the current item in your cart.')
       }

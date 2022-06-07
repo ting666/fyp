@@ -5,7 +5,8 @@
                 <img class="mx-auto my-auto" :src="item.itemImageUrl" width="50" height="50">
             </div>
             <div class="item-name mx-auto my-auto">
-            {{item.name}}
+            <!-- {{item.name}} -->
+            {{item.id}}
             </div>
         </td>
         <td>RM {{item.price}}</td>
@@ -34,12 +35,15 @@ import {mapState} from 'vuex'
 // import CartsService from '@/services/CartsService'
 
 export default {
-  props: {
-    item: {
-      type: Object,
-      required: true
-    }
-  },
+  // props: {
+  //   item: {
+  //     type: Object,
+  //     required: true
+  //   }
+  // },
+  props: [
+    'item'
+  ],
   computed: {
     subTotal () {
       return this.item.price * this.item.quantity
