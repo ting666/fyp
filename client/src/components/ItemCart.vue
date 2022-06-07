@@ -5,8 +5,7 @@
                 <img class="mx-auto my-auto" :src="item.itemImageUrl" width="50" height="50">
             </div>
             <div class="item-name mx-auto my-auto">
-            <!-- {{item.name}} -->
-            {{item.id}}
+              {{item.name}}
             </div>
         </td>
         <td>RM {{item.price}}</td>

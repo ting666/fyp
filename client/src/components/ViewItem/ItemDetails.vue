@@ -72,7 +72,7 @@
             v-if="isUserLoggedIn && bookmark"
             dark
             class="cyan"
-            @click="unsetAsBookmark">
+            @click="unsetAsBookmark(bookmark.id)">
             Unset As Bookmark
           </v-btn>
           </v-flex>
@@ -97,7 +97,8 @@ export default {
   ],
   data () {
     return {
-      bookmark: null
+      // bookmark: null
+      bookmark: {}
     }
   },
   computed: {
@@ -113,9 +114,11 @@ export default {
         return
       }
 
+      const itemId = this.$store.state.route.params.itemId
       try {
         const bookmarks = (await BookmarksService.index({
-          itemId: this.item.id
+          // itemId: this.item.id
+          itemId: itemId
         })).data
         if (bookmarks.length) {
           this.bookmark = bookmarks[0]
@@ -127,18 +130,33 @@ export default {
   },
   methods: {
     async setAsBookmark () {
-      try {
-        this.bookmark = (await BookmarksService.post({
-          itemId: this.item.id
-        })).data
-      } catch (err) {
-        console.log(err)
-      }
+      // try {
+      //   this.bookmark = (await BookmarksService.post({
+      //     itemId: this.item.id
+      //   })).data
+      // } catch (err) {
+      //   console.log(err)
+      // }
+
+      const itemId = this.$store.state.route.params.itemId
+        try {
+          // const itemId = this.route.params.itemId
+          this.bookmark = (await BookmarksService.post({
+            itemId: itemId
+          })).data
+        } catch (err) {
+          console.log(err)
+        }
     },
-    async unsetAsBookmark () {
+    async unsetAsBookmark (id) {
+      // try {
+      //   await BookmarksService.delete(this.bookmark.id)
+      //   this.bookmark = null
+      // } catch (err) {
+      //   console.log(err)
+      // }
       try {
-        await BookmarksService.delete(this.bookmark.id)
-        this.bookmark = null
+        await BookmarksService.delete(id)
       } catch (err) {
         console.log(err)
       }
@@ -170,7 +188,10 @@ export default {
             itemId: itemId
           })
           this.$router.push({
-            name: 'item-cart'
+            name: 'item-cart',
+            params: {
+              itemId: itemId
+            }
           })
         } catch (err) {
           console.log(err)

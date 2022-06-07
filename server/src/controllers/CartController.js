@@ -90,7 +90,6 @@ module.exports = {
         try{
             const userId = req.user.id
             const {cartId} = req.params
-            console.log(cartId)
             const cart = await Cart.findByPk({
             // await Cart.findByPk({
                 where: {

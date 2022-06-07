@@ -25,9 +25,9 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- <item-cart :item="item" v-for="(item, index) in cart"
-                :key="index"/> -->
-                <item-cart :item="item" />
+                <item-cart :item="item" v-for="(item, index) in cart"
+                :key="index"/>
+                <!-- <item-cart :item="item" /> -->
               </tbody>
             </template>
           </v-simple-table>
@@ -72,8 +72,8 @@ export default {
     // }
   },
   async mounted () {
-    const cartId = this.$store.state.route.params.cartId
-    this.item = (await CartsService.show(cartId)).data
+    const itemId = this.$store.state.route.params.itemId
+    this.item = (await CartsService.show(itemId)).data
   },
   components: {
     ItemCart,

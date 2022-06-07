@@ -63,23 +63,33 @@ module.exports = {
             })
         }
     },
-    async remove (req, res) {
+    async delete (req, res) {
         try{
+            // const userId = req.user.id
+            // const {bookmarkId} = req.params
+            // const bookmark = await Bookmark.findOne({
+            //     where: {
+            //         id: bookmarkId,
+            //         UserId: userId
+            //     }
+            // })
+            // if (!bookmark) {
+            //     return res.status(403).send({
+            //         error: 'you do not have access to this bookmark'
+            //     })
+            // }
+            // await bookmark.destroy()
+            // res.send(bookmark)
+
             const userId = req.user.id
-            const {bookmarkId} = req.params
-            const bookmark = await Bookmark.findOne({
+            const {id} = req.params.bookmark.id;
+            await Bookmark.destroy({
                 where: {
-                    id: bookmarkId,
+                    BookmarkId: id,
                     UserId: userId
                 }
             })
-            if (!bookmark) {
-                return res.status(403).send({
-                    error: 'you do not have access to this bookmark'
-                })
-            }
-            await bookmark.destroy()
-            res.send(bookmark)
+            res.send(id)
         } catch (err) {
             res.status(500).send({
                 error: 'an error has occured trying to delete the bookmark'

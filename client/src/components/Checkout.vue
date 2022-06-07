@@ -133,7 +133,6 @@ export default {
         },
         async itemReturned () {
         try {
-            console.log(item.name)
             this.$router.push({
             name: 'create-review'
             })

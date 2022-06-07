@@ -46,7 +46,7 @@ module.exports = (app) => {
         BookmarksController.post)
     app.delete('/bookmarks/:bookmarkId',
         isAuthenticated,
-        BookmarksController.remove)
+        BookmarksController.delete)
 
     app.get('/histories',
         isAuthenticated,
