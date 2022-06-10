@@ -1,9 +1,16 @@
 import Api from '@/services/Api'
 
 export default {
-  index (cart) {
+  // index (cart) {
+  //   return Api().get('carts', {
+  //     params: cart
+  //   })
+  // },
+  index (search) {
     return Api().get('carts', {
-      params: cart
+      params: {
+        search: search
+      }
     })
   },
   post (cart) {
@@ -11,6 +18,9 @@ export default {
   },
   show (cartId) {
     return Api().get(`carts/${cartId}`)
+  },
+  put (cart) {
+    return Api().put(`carts/${cart.id}`, item)
   },
   delete (cartId) {
     return Api().delete(`carts/${cartId}`)

@@ -34,9 +34,12 @@ module.exports = (app) => {
     app.get('/carts/:cartId',
         isAuthenticated,
         CartController.show)
+    app.put('/carts/:cartId',
+        isAuthenticated,
+        CartController.put)
     app.delete('/carts/:cartId',
         isAuthenticated,
-        CartController.remove)
+        CartController.delete)
 
     app.get('/bookmarks',
         isAuthenticated,

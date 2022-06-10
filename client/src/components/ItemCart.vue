@@ -8,14 +8,14 @@
               {{item.name}}
             </div>
         </td>
-        <td>RM {{item.price}}</td>
+        <td>{{item.price}} ETH</td>
         <td>
             <input class="outlined border rounded text-center"
             v-model="item.quantity" type="number" max="2" min="1"
             @input="Total">
         </td>
         <td>
-            RM {{subTotal}}
+          {{subTotal}} ETH
         </td>
         <td>
             <v-btn
@@ -26,7 +26,6 @@
             </v-btn>
         </td>
         </tr>
-
 </template>
 
 <script>
@@ -41,7 +40,7 @@ export default {
   //   }
   // },
   props: [
-    'item'
+    'cart'
   ],
   computed: {
     subTotal () {
@@ -63,13 +62,21 @@ export default {
       this.$store.commit('storeItem')
       console.log(this.subTotal)
     }
-  }
-  // async mounted () {
-  //   if (this.isUserLoggedIn) {
-  //     this.item = (await CartsService.index()).data
-  //   }
+  },
+  // async mounted (value) {
+  //   // if (this.isUserLoggedIn) {
+  //   //   this.item = (await CartsService.index()).data
+  //   // }
+  //   this.items = (await ItemsService.index(value)).data
   // }
-
+  async mounted () {
+    try {
+      const cartId = this.$store.state.route.params.cartId
+      this.cart = (await ItemsService.show(cartId)).data
+    } catch (err) {
+      console.log(err)
+    }
+  }
 }
 </script>
 

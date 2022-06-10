@@ -32,7 +32,7 @@ sequelize.sync({force: true})
         bookmarks.map(bookmark => {
             Bookmark.create(bookmark)
         })
-    )
+    )        
 
     await Promise.all(
         histories.map(history => {

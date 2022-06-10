@@ -40,17 +40,29 @@ export default new Vuex.Store({
     },
     storeItem (state) {
       const parsed = JSON.stringify(state.cart)
+      const parsed1 = JSON.stringify(state.user.username)
       localStorage.setItem('cart', parsed)
+      localStorage.setItem('user', parsed1)
     },
     getLocalStorage (state) {
-      if (localStorage.getItem('cart')) {
-        try {
-          state.cart = JSON.parse(localStorage.getItem('cart'))
-        } catch (error) {
-          localStorage.removeItem('cart')
+      if (localStorage.getItem('user') == state.user.username)
+        if (localStorage.getItem('cart')) {
+          try {
+            state.cart = JSON.parse(localStorage.getItem('cart'))
+          } catch (error) {
+            localStorage.removeItem('cart')
+          }
         }
-      }
     },
+    // getLocalStorageUser (state) {
+    //     if (localStorage.getItem('user')) {
+    //       try {
+    //         state.user = JSON.parse(localStorage.getItem('user'))
+    //       } catch (error) {
+    //         localStorage.removeItem('cart')
+    //       }
+    //     }
+    // },
     calcSubTotal (state) {
       if (state.cart.length === 1) {
         state.cart.forEach((item) => {

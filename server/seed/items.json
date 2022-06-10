@@ -1,65 +1,65 @@
 [
     {
         "owner": "testing",
-        "name": "Chair",
+        "name": "STEFAN Chair, brown-black",
         "category": "Furniture",
-        "price": 5.12,
-        "quantity": 2,
-        "itemImageUrl": "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1580742487-resize.jpg?crop=1xw:1xh;center,top&resize=480:*",
-        "description": "bla bla bla"
+        "price": 1,
+        "quantity": 1,
+        "itemImageUrl": "https://www.ikea.com/my/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+        "description": "A sturdy chair with a solid wood construction that can handle the challenges of everyday life! Combines nicely with most styles, and if you’re looking for extra comfort, simply add a chair pad."
     },
     {
         "owner": "testing",
-        "name": "cxzc",
-        "category": "cxzc",
-        "price": 12,
-        "quantity": 2,
-        "itemImageUrl": "xcz",
-        "description": "zxc"
+        "name": "VEDBO Dining table, white",
+        "category": "Furniture",
+        "price": 2,
+        "quantity": 1,
+        "itemImageUrl": "https://www.ikea.com/my/en/images/products/vedbo-dining-table-white__0766051_pe753698_s5.jpg?f=s",
+        "description": "The matte, velvety surface of this dining table invites you to feel its smoothness. It isn’t sensitive to fingerprints so go ahead and touch. Partners perfectly with VEDBO chair for a timeless look."
     },
     {
         "owner": "testing",
         "name": "Mid Century Modern Chair with Wood Legs",
         "category": "Furniture",
-        "price": 82.17,
-        "quantity": 2,
+        "price": 1.5,
+        "quantity": 1,
         "itemImageUrl": "https://m.media-amazon.com/images/I/71uiMIyDXFL._AC_SL1500_.jpg",
         "description": "The Mid Century Modern Molded Arm Chair with Wood Leg is stylish, comfortable and lightweight. Its minimalist design is the perfect accent chair for all types of home decor making it a must have piece! Available in black, white, red and blue, this chair offers many practical features that enhance comfort and durability."
     },
     {
         "owner": "testing",
-        "name": "test",
-        "category": "test",
-        "price": 11.22,
-        "quantity": 2,
-        "itemImageUrl": "test",
-        "description": "test"
+        "name": "The Magic of Thinking Big",
+        "category": "Books",
+        "price": 0.5,
+        "quantity": 1,
+        "itemImageUrl": "https://cdn.shopify.com/s/files/1/0511/7575/1837/products/9781501126178_261x.jpg?v=1645173924",
+        "description": "Millions of people throughout the world have improved their lives using The Magic of Thinking Big. Dr. David J. Schwartz, long regarded as one of the foremost experts on motivation, will help you sell better, manage better, earn more money, and—most important of all—find greater happiness and peace of mind."
     },
     {
-        "owner": "meow",
-        "name": "test",
-        "category": "test",
-        "price": 11.12,
-        "quantity": 2,
-        "itemImageUrl": "test",
-        "description": "test"
+        "owner": "hello",
+        "name": "12.9-inch iPad Pro",
+        "category": "Electronics",
+        "price": 3,
+        "quantity": 1,
+        "itemImageUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-wifi-spacegray-202104_GEO_MY?wid=470&hei=556&fmt=p-jpg&qlt=95&.v=1617923129000",
+        "description": "iPad is so versatile, it’s more than up to any task. Whether you’re working on a project, expressing your creativity or playing an immersive game, iPad is a fun and powerful way to get it done. "
     },
     {
-        "owner": "meow",
-        "name": "test",
-        "category": "test",
-        "price": 11.12,
-        "quantity": 2,
-        "itemImageUrl": "test",
-        "description": "test"
+        "owner": "hello",
+        "name": "Female Korean Hanbok Traditional Dress",
+        "category": "Clothing & Accessories",
+        "price": 2.3,
+        "quantity": 1,
+        "itemImageUrl": "https://m.media-amazon.com/images/I/51zf1XvPg2L._AC_UX569_.jpg",
+        "description": "Long sleeve.Short tops.Long full skirts.Korean traditional hanbok dresses.Formal dancing dresses.Korean traditional womens hanboks with Bow design, Simple and stylish,Suitable for woman lady.Quality material will allow you to feel great all day. Very easy to put on."
     },
     {
-        "owner": "meow",
-        "name": "Mid Century Modern Chair with Wood Legs",
-        "category": "Furniture",
-        "price": 82.17,
-        "quantity": 2,
-        "itemImageUrl": "https://m.media-amazon.com/images/I/71uiMIyDXFL._AC_SL1500_.jpg",
-        "description": "The Mid Century Modern Molded Arm Chair with Wood Leg is stylish, comfortable and lightweight. Its minimalist design is the perfect accent chair for all types of home decor making it a must have piece! Available in black, white, red and blue, this chair offers many practical features that enhance comfort and durability."
+        "owner": "hello",
+        "name": "Canon EOS M50 Mark II",
+        "category": "Film & Photography",
+        "price": 4,
+        "quantity": 1,
+        "itemImageUrl": "https://my.canon/media/image/2020/10/12/bde9f543eec943e7b04eb734ca774571_M50MII_Black_FrontBODY-.png",
+        "description": "Lightweight and stylish, the EOS M50 Mark II is fun and easy to use with Wi-Fi connectivity for content creators to stay close to your audience at all times. Keep your social media feeds lit with high-quality visual storytelling in 4K and accurate eye and face detection autofocusing."
     }
 ]

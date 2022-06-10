@@ -14,7 +14,7 @@
                     {{item.category}}
                     </div>
                     <div class="item-price">
-                    RM {{item.price}}
+                    {{item.price}} ETH
                     </div>
 
                     <v-btn
@@ -79,7 +79,7 @@ export default {
 }
 
 .item-image {
-  width: 40%;
+  width: 25%;
   margin: 0 auto;
 }
 

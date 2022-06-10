@@ -13,7 +13,7 @@
             Category: {{item.category}}
           </div>
           <div class="item-price">
-            Price: RM {{item.price}}
+            Price: {{item.price}} ETH
           </div>
           <div class="item-quantity">
             Quantity: {{item.quantity}}

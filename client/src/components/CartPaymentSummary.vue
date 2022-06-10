@@ -7,13 +7,13 @@
                     <td>
                       Subtotal
                     </td>
-                    <td>RM {{subTotal}}</td>
+                    <td>{{subTotal}} ETH</td>
                 </tr>
                 <tr class="text-left">
                     <td>
                     Deposit
                     </td>
-                    <td>RM {{Deposit}}</td>
+                    <td>{{Deposit}} ETH</td>
                 </tr>
                 <tr class="text-left">
                     <td>
@@ -23,7 +23,7 @@
                     </td>
                     <td>
                     <strong>
-                        RM {{grandTotal.toFixed(2)}}
+                      {{grandTotal.toFixed(2)}} ETH
                     </strong>
                     </td>
                 </tr>

@@ -1,7 +1,8 @@
 <template>
     <v-layout>
-        <v-flex xs6 class="mt-3 imageBox">
+        <v-flex xs6 class="mt-3 imageOwnerBox">
           <img class="item-image" :src="item.itemImageUrl" />
+          <div class="space"></div>
           <div class="item-owner">
             Owner: {{item.owner}}
           </div>
@@ -17,7 +18,7 @@
             {{item.category}}
           </div> -->
           <div class="item-price">
-            RM {{item.price}}
+            {{item.price}} ETH
           </div>
           
 
@@ -36,9 +37,11 @@
                 outlined
                 dark
                 class="cyan"
-                @click="setup(item)">
+                @click="addToCart">
                 Add To Cart
               </v-btn>
+              <!-- @click="setup(item)"> -->
+
               <v-btn
                 v-if="!$store.state.isUserLoggedIn"
                 outlined
@@ -72,7 +75,7 @@
             v-if="isUserLoggedIn && bookmark"
             dark
             class="cyan"
-            @click="unsetAsBookmark(bookmark.id)">
+            @click="unsetAsBookmark">
             Unset As Bookmark
           </v-btn>
           </v-flex>
@@ -90,6 +93,7 @@ import {mapState} from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
 import CartsService from '@/services/CartsService'
 import DatePicker from './DatePicker'
+import ItemsService from '../../services/ItemsService'
 
 export default {
   props: [
@@ -97,15 +101,32 @@ export default {
   ],
   data () {
     return {
-      // bookmark: null
-      bookmark: {}
+      bookmark: null,
+      cart: {
+        // user: this.$store.state.user.username,
+        // owner: item.owner,
+        // name: item.name,
+        // price: item.price,
+        // quantity: item.quantity,
+        // itemImageUrl: item.itemImageUrl,
+        // state: 'PENDING'
+
+        user: this.$store.state.user.username,
+        owner: null,
+        name: null,
+        price: null,
+        quantity: null,
+        itemImageUrl: null,
+        state: 'PENDING'
+      }
+      // bookmark: {}
     }
   },
   computed: {
     ...mapState([
       'isUserLoggedIn',
-      'user',
-      'cart'
+      'user'
+      // 'cart'
     ])
   },
   watch: {
@@ -114,11 +135,36 @@ export default {
         return
       }
 
+      // try {
+      //   const bookmarks = (await BookmarksService.index({
+      //     itemId: this.item.id
+      //   })).data
+      //   if (bookmarks.length) {
+      //     this.bookmark = bookmarks[0]
+      //   }
+      // } catch (err) {
+      //   console.log(err)
+      // }
+
+      // const itemId = this.$store.state.route.params.itemId
+      // try {
+      //   const bookmarks = (await BookmarksService.index({
+      //     itemId: this.item.id
+      //     // itemId: itemId
+      //   })).data
+      //   if (bookmarks.length) {
+      //     this.bookmark = bookmarks[0]
+      //   }
+      // } catch (err) {
+      //   console.log(err)
+      // }
+
       const itemId = this.$store.state.route.params.itemId
-      try {
+      // this.item = (await ItemsService.show(itemId)).data
+       try {
         const bookmarks = (await BookmarksService.index({
-          // itemId: this.item.id
-          itemId: itemId
+          itemId: itemId,
+          userId: this.$store.state.user.id
         })).data
         if (bookmarks.length) {
           this.bookmark = bookmarks[0]
@@ -129,45 +175,59 @@ export default {
     }
   },
   methods: {
-    async setAsBookmark () {
-      // try {
-      //   this.bookmark = (await BookmarksService.post({
-      //     itemId: this.item.id
-      //   })).data
-      // } catch (err) {
-      //   console.log(err)
-      // }
-
-      const itemId = this.$store.state.route.params.itemId
-        try {
-          // const itemId = this.route.params.itemId
-          this.bookmark = (await BookmarksService.post({
-            itemId: itemId
-          })).data
+    async addToCart() {
+      try {
+        await CartsService.post(this.cart)
+        this.$router.push({
+          name: 'item-cart'
+        }) 
         } catch (err) {
           console.log(err)
-        }
+      }
     },
-    async unsetAsBookmark (id) {
-      // try {
-      //   await BookmarksService.delete(this.bookmark.id)
-      //   this.bookmark = null
-      // } catch (err) {
-      //   console.log(err)
-      // }
+    async setAsBookmark () {
       try {
-        await BookmarksService.delete(id)
+        this.bookmark = (await BookmarksService.post({
+          itemId: this.item.id,
+          // userId: this.$store.state.user.id
+        })).data
       } catch (err) {
         console.log(err)
       }
+
+      // const itemId = this.$store.state.route.params.itemId
+      //   try {
+      //     // const itemId = this.route.params.itemId
+      //     this.bookmark = (await BookmarksService.post({
+      //       itemId: itemId
+      //     })).data
+      //   } catch (err) {
+      //     console.log(err)
+      //   }
+    },
+    async unsetAsBookmark () {
+      try {
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
+      } catch (err) {
+        console.log(err)
+      }
+
+      // try {
+      //   await BookmarksService.delete(id)
+      // } catch (err) {
+      //   console.log(err)
+      // }
     },
     async setup (item) {
       if (this.$store.state.cart.length === 0) {
-        // this.$store.commit('addToCart', item)
-        // this.$store.commit('storeItem')
-        // this.$router.push({
-        //   name: 'item-cart'
-        // })
+        console.log(localStorage.getItem('user'))
+        console.log(this.$store.state.user.username)
+        this.$store.commit('addToCart', item)
+        this.$store.commit('storeItem')
+        this.$router.push({
+          name: 'item-cart'
+        })
 
         // try {
         //   // this.cart = (await CartsService.post({
@@ -181,25 +241,40 @@ export default {
         //   console.log(err)
         // }
 
-        const itemId = this.$store.state.route.params.itemId
-        try {
-          // const itemId = this.route.params.itemId
-          await CartsService.post({
-            itemId: itemId
-          })
-          this.$router.push({
-            name: 'item-cart',
-            params: {
-              itemId: itemId
-            }
-          })
-        } catch (err) {
-          console.log(err)
-        }
+        // const itemId = this.$store.state.route.params.itemId
+        // try {
+        //   // const itemId = this.route.params.itemId
+        //   await CartsService.post({
+        //     itemId: itemId
+        //   })
+        //   this.$router.push({
+        //     name: 'item-cart'
+        //     // params: {
+        //     //     itemId: item.id
+        //     //   }
+        //   })
+        // } catch (err) {
+        //   console.log(err)
+        // }
       } else {
         alert('You can only checkout one item per order. Please add this item to your WishList to order again later, or remove the current item in your cart.')
       }
     }
+    // async mounted () {
+    //   const itemId = this.$store.state.route.params.itemId
+    //   this.item = (await ItemsService.show(itemId)).data
+    //    try {
+    //     this.bookmark = (await BookmarksService.index({
+    //       itemId: this.item.id,
+    //       userId: this.$store.state.user.id
+    //     })).data
+    //     if (bookmarks.length) {
+    //       this.bookmark = bookmarks[0]
+    //     }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
   },
   components: {
     DatePicker
@@ -247,14 +322,14 @@ export default {
 }
 
 .item-image {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
 }
 
-.imageBox {
+.imageOwnerBox {
   border: lightgray solid;
   border-radius: 25px;
-  padding: 15px;
+  padding: 20px;
   margin-right: 5px;
 }
 
@@ -285,5 +360,9 @@ input {
   border: lightgray solid;
   border-radius: 25px;
   padding: 15px;
+}
+
+.space {
+  height: 100px;
 }
 </style>

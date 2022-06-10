@@ -104,8 +104,12 @@ export default {
     ])
   },
   mounted () {
-    this.$store.commit('getLocalStorage')
-  }
+    //   if (localStorage.getItem('user') == this.$store.state.user.username) {
+        this.$store.commit('getLocalStorage')
+        console.log(this.$store.state.user.username)
+        console.log(localStorage.getItem('user'))
+      }
+//   }
 }
 </script>
 
